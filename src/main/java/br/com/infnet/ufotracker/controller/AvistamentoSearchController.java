@@ -1,9 +1,10 @@
-package br.com.infnet.ufotracker_gab.controller;
+package br.com.infnet.ufotracker.controller;
 
-import br.com.infnet.ufotracker_gab.dto.AvistamentoDoc;
-import br.com.infnet.ufotracker_gab.dto.EstadoConfiabilidadeDto;
-import br.com.infnet.ufotracker_gab.dto.TopAvistamento;
-import br.com.infnet.ufotracker_gab.service.AvistamentoSearchService;
+
+import br.com.infnet.ufotracker.dtos.AvistamentoDoc;
+import br.com.infnet.ufotracker.dtos.EstadoConfiabilidadeDto;
+import br.com.infnet.ufotracker.dtos.TopAvistamento;
+import br.com.infnet.ufotracker.service.AvistamentoSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

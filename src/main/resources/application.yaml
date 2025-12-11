@@ -1,1 +1,19 @@
-spring.application.name=ufoTracker
+spring:
+  application:
+    name: ufoTracker
+  datasource:
+    # protocolo://host:port/recurso
+    url: jdbc:postgresql://localhost:5432/ufotracker
+    username: ufo
+    password: ufo123docker
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        hibernate.jdbc.time_zone: America/Sao_Paulo
+    hibernate:
+      ddl-auto: none
+

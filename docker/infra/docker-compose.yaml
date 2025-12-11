@@ -21,7 +21,7 @@ services:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m      # memória da JVM (ajusta se precisar)
     ports:
       - "9200:9200"                         # REST API
-      - "9300:9300"                         # porta de cluster (nem vamos usar muito em dev)
+      - "9300:9300"
     networks:
       - ufology
     healthcheck:

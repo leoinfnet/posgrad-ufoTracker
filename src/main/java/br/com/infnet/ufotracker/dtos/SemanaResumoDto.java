@@ -1,4 +1,4 @@
-package br.com.infnet.ufotracker_gab.dto;
+package br.com.infnet.ufotracker.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
