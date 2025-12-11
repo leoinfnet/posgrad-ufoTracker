@@ -1,0 +1,49 @@
+services:
+  database:
+    image: postgres
+    container_name: ufo_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ufo
+      POSTGRES_PASSWORD: ufo123docker
+      POSTGRES_DB: ufotracker
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - ufology
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: ufo_elasticsearch
+    environment:
+      - discovery.type=single-node          # modo dev, nó único
+      - xpack.security.enabled=false        # desliga auth pra facilitar
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m      # memória da JVM (ajusta se precisar)
+    ports:
+      - "9200:9200"                         # REST API
+      - "9300:9300"                         # porta de cluster (nem vamos usar muito em dev)
+    networks:
+      - ufology
+    healthcheck:
+      test: [ "CMD", "curl", "-fs", "http://localhost:9200/_cluster/health" ]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.14.1
+    container_name: kib
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - ufology
+
+networks:
+  ufology:
+    name: ufology
+    driver: bridge
+
