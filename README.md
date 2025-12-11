@@ -144,9 +144,9 @@ O projeto sobe automaticamente:
 ## 💡 Tecnologias Utilizadas
 
 | Tecnologia | Versão |
-|-----------|--------|
+|-----------|------|
 | **Java** | 21 |
-| **Spring Boot** | 3.x / 4.x |
+| **Spring Boot** |  4.x |
 | **PostgreSQL** | latest |
 | **Elasticsearch** | 8.x |
 | **Python** | 3.x (para o ETL) |
@@ -157,23 +157,30 @@ O projeto sobe automaticamente:
 ## 📦 Como Rodar
 
 1. Clone o projeto
-2. Execute:
+2. Entre na pasta docker/infra
+3. Execute:
 
 ```
 docker compose up -d
 ```
 
 3. Aguarde Postgres + Elasticsearch subirem
-4. Rode o ETL
-5. Inicie a aplicação Spring Boot:
+4. Rode o ETL:
+    1. Entre na pasta /docker/infra/etc
+    2. Instale os requirements com:
+        ```
+            pip3 install -r requirements.txt
+       ```
+   3. Rode o aplicativo: 
+      ```
+        python3 etc.py
+      ```
+  4. Aguarde a finalização. 
+5. Sua aplicação estará pronta para funcionar. 
 
-```
-./mvnw spring-boot:run
-```
 
----
 
-## 📚 Endpoints Principais
+##  Endpoints Principais
 
 - `POST /api/avistamentos`
 - `GET /api/avistamentos?page=0&size=10`
@@ -189,15 +196,7 @@ docker compose up -d
 
 ---
 
-## ✨ Sobre o Projeto
-
-Este sistema foi criado para estudar:
-
-- Integração de Elasticsearch com Spring Boot
-- Processamento de dados com ETL externo
-- Consultas avançadas (textuais, geográficas e agregações)
-- Cacheamento de relatórios e tuning
-- Boas práticas REST
+1
 
 É um projeto ideal para aulas, experimentação ou demonstrações de arquitetura moderna.
 
