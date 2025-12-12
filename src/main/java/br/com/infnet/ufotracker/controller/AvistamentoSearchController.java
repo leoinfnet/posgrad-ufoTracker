@@ -1,9 +1,7 @@
 package br.com.infnet.ufotracker.controller;
 
 
-import br.com.infnet.ufotracker.dtos.AvistamentoDoc;
-import br.com.infnet.ufotracker.dtos.EstadoConfiabilidadeDto;
-import br.com.infnet.ufotracker.dtos.TopAvistamento;
+import br.com.infnet.ufotracker.dtos.*;
 import br.com.infnet.ufotracker.service.AvistamentoSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +56,32 @@ public class AvistamentoSearchController {
         var resultados = searchService.buscaAvancada(estado, tipoObjeto, confiabilidadeMin, page, size);
         return ResponseEntity.ok(resultados);
     }
+    @GetMapping("/ultimo-ano")
+    public ResponseEntity<?> getUltimoAno(
+
+    ) throws IOException {
+
+        List<TipoObjetoEstatistica> tipoObjetoEstatisticas = searchService.agruparPorTipoObjetoUltimoAno();
+        return ResponseEntity.ok(tipoObjetoEstatisticas);
+    }
+
+
+    @GetMapping("/media-confiabilidade")
+    public ResponseEntity<?> getMediaConfiabilidade(
+
+    ) throws IOException {
+
+        double media = searchService.calcularMediaConfiabilidade();
+        return ResponseEntity.ok(Map.of("media",media));
+    }
+    @GetMapping("/estatisticas-confiabilidade")
+    public ResponseEntity<?> getEstatisticas(
+
+    ) throws IOException {
+
+        EstatisticasConfiabilidade estatisticasConfiabilidade = searchService.calcularEstatisticasConfiabilidade();
+        return ResponseEntity.ok(estatisticasConfiabilidade);
+    }
 
     /**
      * Agregação: quantos avistamentos por estado.
@@ -105,4 +129,9 @@ public class AvistamentoSearchController {
         var resultados = searchService.getRankingSemanaAnterior(inicioSemana);
         return ResponseEntity.ok(resultados);
     }
+    @GetMapping("/por-horario")
+    public ResponseEntity<?> getPorHorario() throws IOException {
+        return ResponseEntity.ok(searchService.timelinePorHoraUltimoAno());
+    }
+
 }

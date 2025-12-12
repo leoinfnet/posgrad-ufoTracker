@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true) // se vier campo a mais, ignora
 public class AvistamentoDoc {
+
     private String id;
 
     @JsonProperty("dataHora")
@@ -24,6 +25,8 @@ public class AvistamentoDoc {
     private String descricao;
 
     private Location location;
+    private Double score;
+    private String descricaoFormatada;
 
     @Data
     @NoArgsConstructor
