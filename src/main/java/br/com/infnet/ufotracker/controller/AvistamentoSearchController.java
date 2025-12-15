@@ -5,10 +5,7 @@ import br.com.infnet.ufotracker.dtos.*;
 import br.com.infnet.ufotracker.service.AvistamentoSearchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/avistamentos/search")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class AvistamentoSearchController {
     private final AvistamentoSearchService searchService;
 

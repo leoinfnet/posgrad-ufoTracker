@@ -15,6 +15,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/avistamentos")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
+
 public class AvistamentoController {
     private final AvistamentoService service;
 
