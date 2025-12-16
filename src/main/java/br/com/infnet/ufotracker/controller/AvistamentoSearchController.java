@@ -19,21 +19,8 @@ import java.util.Map;
 public class AvistamentoSearchController {
     private final AvistamentoSearchService searchService;
 
-    /**
-     * Busca simples por texto na descrição.
-     *
-     * GET /api/avistamentos/search/texto?texto=...&page=0&size=10
-     */
-    @GetMapping("/texto")
-    public ResponseEntity<List<AvistamentoDoc>> buscarPorTexto(
-            @RequestParam String texto,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) throws IOException {
 
-        var resultados = searchService.buscarPorDescricao(texto, page, size);
-        return ResponseEntity.ok(resultados);
-    }
+
 
     /**
      * Busca avançada:
