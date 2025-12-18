@@ -41,7 +41,22 @@ services:
         condition: service_healthy
     networks:
       - ufology
-
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.4.7
+    container_name: keycloak
+    ports:
+      - "8081:8080"   # host:container  → http://localhost:8081
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin    # usuário inicial do admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin    # senha inicial do admin
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+      KC_LOG_LEVEL: info
+      KC_HOSTNAME: localhost
+    command:
+      - start-dev
+    networks:
+      - ufology
 networks:
   ufology:
     name: ufology
